@@ -3,3 +3,12 @@ variable "bucket_name" {
   default = "tristram-backup"
 }
 
+variable "user_name" {
+  type    = string
+  default = "restic"
+}
+
+variable "policy_name" {
+  type    = string
+  default = "restic"
+}

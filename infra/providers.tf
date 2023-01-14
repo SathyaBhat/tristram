@@ -10,9 +10,25 @@ terraform {
 # Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
+
+  default_tags {
+    tags = {
+      used_for     = "backup"
+      application  = "restic"
+      created_with = "terraform"
+    }
+  }
 }
 
 provider "aws" {
-  alias = "sydney"
+  alias  = "sydney"
   region = "ap-southeast-2"
+
+  default_tags {
+    tags = {
+      used_for     = "backup"
+      application  = "restic"
+      created_with = "terraform"
+    }
+  }
 }
