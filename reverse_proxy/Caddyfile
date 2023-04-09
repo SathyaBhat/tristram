@@ -1,0 +1,16 @@
+{ 
+  debug 
+  auto_https disable_redirects
+}
+
+(config) {
+  reverse_proxy /sonarr* sonarr:8989
+  reverse_proxy /radarr* radarr:7878
+}
+tristram.bishop-bass.ts.net {
+  import config
+}
+
+http://tristram.local {
+  import config
+}

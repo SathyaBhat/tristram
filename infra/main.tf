@@ -16,7 +16,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "lc" {
     }
 
     transition {
-      days          = 0
+      days          = 1
       storage_class = "INTELLIGENT_TIERING"
     }
   }
