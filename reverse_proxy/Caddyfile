@@ -6,11 +6,34 @@
 (config) {
   reverse_proxy /sonarr* sonarr:8989
   reverse_proxy /radarr* radarr:7878
+  reverse_proxy /grafana* grafanaoss:3000
+  route /deluge* {
+    uri strip_prefix /deluge
+    reverse_proxy deluge:8112 {
+      header_up X-Deluge-Base "/deluge"
+    }  
+  }
+
+  handle_path /netdata/* {
+    reverse_proxy http://172.19.0.1:19999 
+  }
 }
 tristram.bishop-bass.ts.net {
   import config
 }
 
 http://tristram.local {
+  import config
+}
+
+tristram.sathyabh.at {
+  tls {
+    dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+  }
+  reverse_proxy https://172.19.0.1:8001 {
+    transport http {
+      tls_insecure_skip_verify
+    }
+  }
   import config
 }
